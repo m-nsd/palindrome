@@ -14,15 +14,19 @@ function Phrase(content) {
     return this.letters().toLowerCase();
   }
 
-  // コンテンツの文字だけを返す
+  // コンテンツの文字だけを返す(数字、記号、ホワイトスペースを取り除く)
   // 利用例:
   //   new Phrase("Hello, world!").letters() === "Helloworld"
   this.letters = function letters() {
     return (this.content.match(/[a-z]/gi) || []).join("");
   }
 
-  // パリンドロームならtrueを、違うならfalseを返す
+  // パリンドロームならtrueを、違うならfalseを返す、""もfalseを返す
   this.palindrome = function palindrome() {
+    if (this.letters() == "") {
+    return false;
+    } else {
     return this.processedContent() === this.processedContent().reverse();
+    }
   }
 }
